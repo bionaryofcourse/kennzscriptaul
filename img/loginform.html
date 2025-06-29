@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Genshin Impact - Login</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Pacifico&display=swap');
+
+  body {
+  background-color: lightblue; /* Warna solid */
+            /* atau */
+            background-image: url('https://pict.sindonews.net/webp/732/pena/news/2022/07/09/700/821655/menebak-lawan-luffy-setelah-kaido-sebelum-pertarungan-akhir-ywp.webp'); /* Gambar sebagai background */
+            /* atau */
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradien */
+    background-color: #f0f0f0;
+    background-image: url('background.jpg');
+    background-repeat: no-repeat; /* agar gambar tidak berulang */
+    background-size: cover; /* agar gambar menutupi seluruh background */
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Montserrat', sans-serif;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    background: rgba(20, 20, 40, 0.85);
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(106, 90, 205, 0.8);
+    width: 320px;
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #a29bfe;
+    text-shadow: 0 0 10px #6c5ce7;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #c7d2fe;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    box-shadow: 0 0 10px #6c5ce7;
+    background: #2f2f5c;
+    color: #f0f0f0;
+  }
+
+  button {
+    width: 100%;
+    background: #6c5ce7;
+    border: none;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #a29bfe;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background: #4831d4;
+    box-shadow: 0 0 20px #7748f8;
+  }
+
+  .error-msg {
+    background: #ef4444;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 0 10px #ef4444;
+  }
+
+  .footer-text {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #b2becd;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Genshin Login</h1>
+    <div id="error" class="error-msg" style="display:none;"></div>
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <label for="username">Username</label>
+      <input type="text" id="username" autocomplete="off" placeholder="Masukkan username" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Masukkan password" required />
+      <button type="submit">Masuk</button>
+    </form>
+    <div class="footer-text">Gunakan username: <b>traveler</b> dan password: <b>genshin123</b></div>
+  </div>
+
+<script>
+  function handleLogin(event) {
+    event.preventDefault();
+    const usernameInput = document.getElementById('username').value.trim();
+    const passwordInput = document.getElementById('password').value;
+
+    const validUsername = 'traveler';
+    const validPassword = 'genshin123';
+
+    const errorDiv = document.getElementById('error');
+    errorDiv.style.display = 'none';
+
+    if (usernameInput === validUsername && passwordInput === validPassword) {
+      // Save username in sessionStorage for dashboard
+      sessionStorage.setItem('loggedInUser', usernameInput);
+      // Redirect to dashboard page
+      window.location.href = 'dashboard.html';
+    } else {
+      errorDiv.textContent = 'Username atau password salah.';
+      errorDiv.style.display = 'block';
+    }
+    return false;
+  }
+</script>
+</body>
+</html>
+

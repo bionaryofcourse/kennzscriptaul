@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kennz Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpapershome.com/images/pages/pic_h/229.jpg') no-repeat center center fixed; /* Gambar latar belakang */
+            background-size: cover; /* Mengatur gambar agar memenuhi area */
+            color: white; /* Warna teks */
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7); /* Gradasi hitam transparan */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            position: relative; /* Untuk submenu */
+            display: flex; /* Menggunakan flexbox untuk navbar */
+            justify-content: center; /* Rata tengah */
+            flex-wrap: wrap; /* Membungkus item jika diperlukan */
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            position: relative; /* Untuk submenu */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px; /* Padding untuk tombol */
+            display: inline-block; /* Agar padding berfungsi */
+            font-size: 16px; /* Ukuran font untuk tombol */
+            transition: background 0.3s, color 0.3s; /* Transisi untuk efek hover */
+        }
+
+        /* Efek hover untuk navbar */
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2); /* Latar belakang saat hover */
+            color: #ffffff; /* Warna teks saat hover */
+            border-radius: 5px; /* Sudut membulat pada hover */
+        }
+
+        /* Styling untuk submenu */
+        .submenu {
+            display: none; /* Sembunyikan submenu secara default */
+            position: absolute; /* Posisi absolut untuk submenu */
+            background: rgba(0, 0, 0, 0.8); /* Latar belakang submenu */
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000; /* Pastikan submenu di atas elemen lain */
+            top: 100%; /* Tempatkan submenu di bawah tombol */
+            left: 0; /* Rata kiri */
+        }
+
+        .submenu a {
+            display: block; /* Tampilkan submenu sebagai blok */
+            color: #ffffff; /* Warna teks submenu */
+            text-decoration: none; /* Hapus garis bawah */
+            padding: 10px 15px; /* Padding untuk submenu */
+            font-size: 14px; /* Ukuran font untuk submenu */
+            transition: background 0.3s; /* Transisi untuk efek hover */
+        }
+
+        .submenu a:hover {
+            background: rgba(255, 255, 255, 0.2); /* Efek hover pada submenu */
+            border-radius: 5px; /* Sudut membulat pada hover */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5); /* Hitam transparan */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.7); /* Gradasi hitam transparan */
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Styling for the copy button */
+        .copy-button {
+            background-color: #28a745; /* Green background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding */
+            font-size: 16px; /* Font size */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Transition effects */
+        }
+
+        .copy-button:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .copy-button:active {
+            transform: scale(0.95); /* Slightly shrink on click */
+        }
+
+        /* Styling for the textarea */
+        textarea {
+            width: 100%; /* Full width */
+            height: 30px; /* Set height to 1 line */
+            resize: none; /* Disable resizing */
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
+            color: black; /* Black text */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 5px; /* Padding */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column; /* Rata vertikal pada perangkat kecil */
+            }
+
+            nav ul li {
+                margin: 10px 0; /* Margin vertikal untuk item navbar */
+            }
+
+            nav ul li a {
+                font-size: 14px; /* Ukuran font lebih kecil pada perangkat kecil */
+            }
+
+            section {
+                padding: 10px; /* Padding lebih kecil pada perangkat kecil */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 12px; /* Ukuran font lebih kecil pada perangkat sangat kecil */
+            }
+
+            main {
+                padding: 10px; /* Padding lebih kecil pada perangkat sangat kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kennz Web</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#" id="executor-toggle">Executor</a>
+                    <div class="submenu" id="executor-submenu">
+                        <a href="#fluxus">Fluxus</a>
+                        <a href="#delta">Delta</a>
+                        <a href="#arceus-x">Arceus X</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" id="script-toggle">Script</a>
+                    <div class="submenu" id="script-submenu">
+                        <a href="https://www.roblox.com/id/games/126884695634066/Grow-a-Garden">Grow a Garden</a>
+                        <a href="#blox-fruit">Blox Fruit</a>
+                        <a href="#dead-rails">Dead Rails</a>
+                        <a href="#fisch">Fisch</a>
+                        <a href="#pet-simulator">Pet Simulator</a>
+                        <a href="#anime-tower-defenders">Anime Tower Defenders</a>
+                        <a href="#high-and-jump">High and Jump</a>
+                    </div>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="script">
+            <h2>Script Here🔽🔽🔽</h2>
+            <p>Jangan lupa like and Subscribe</p>
+            <textarea readonly>
+                // Example gardening script
+                function plantSeeds() {
+                    console.log("Seeds planted!");
+                }
+            </textarea>
+            <br>
+            <button class="copy-button" onclick="copyToClipboard()">Copy Script</button>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Hubungi saya</p>
+            <form id="contact-form">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                <button type="submit">Send Message</button>
+            </form>
+            <div id="response" style="margin-top: 20px; color: yellow;"></div> <!-- Tempat untuk menampilkan pesan -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Kennz Web. All rights reserved.</p>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("YOUR_USER_ID"); // Ganti dengan user ID Anda
+        })();
+
+        // Toggle submenu visibility for Script
+        document.getElementById('script-toggle').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah link default
+            const submenu = document.getElementById('script-submenu');
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; // Toggle display
+        });
+
+        // Toggle submenu visibility for Executor
+        document.getElementById('executor-toggle').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah link default
+            const submenu = document.getElementById('executor-submenu');
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; // Toggle display
+        });
+
+        // Menutup submenu jika mengklik di luar
+        window.addEventListener('click', function(event) {
+            const scriptSubmenu = document.getElementById('script-submenu');
+            const executorSubmenu = document.getElementById('executor-submenu');
+            if (!event.target.matches('#script-toggle') && !scriptSubmenu.contains(event.target)) {
+                scriptSubmenu.style.display = 'none'; // Sembunyikan submenu Script
+            }
+            if (!event.target.matches('#executor-toggle') && !executorSubmenu.contains(event.target)) {
+                executorSubmenu.style.display = 'none'; // Sembunyikan submenu Executor
+            }
+        });
+
+        // Menangani pengiriman formulir
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir default
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Kirim email menggunakan EmailJS
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                from_name: name,
+                from_email: email,
+                message: message
+            })
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                document.getElementById('response').innerHTML = "Pesan berhasil dikirim!";
+                document.getElementById('contact-form').reset(); // Reset formulir
+            }, function(error) {
+                console.log('FAILED...', error);
+                document.getElementById('response').innerHTML = "Gagal mengirim pesan. Silakan coba lagi.";
+            });
+        });
+
+        function copyToClipboard() {
+            const textarea = document.querySelector('textarea');
+            textarea.select();
+            document.execCommand('copy');
+            alert('Script copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

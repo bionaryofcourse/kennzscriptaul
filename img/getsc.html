@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Script Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #434343, #000000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .get-script-section {
+            background-color: rgba(0, 0, 0, 0.7); /* Transparan hitam */
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-subscribe {
+            background-color: #FF0000;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-subscribe:hover {
+            background-color: #CC0000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-subscribe.subscribed {
+            background-color: #606060;
+        }
+
+        .btn-like {
+            background-color: #065FD4;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 8px rgba(6, 95, 212, 0.3);
+        }
+
+        .btn-like:hover {
+            background-color: #0549a8;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(6, 95, 212, 0.4);
+        }
+
+        .btn-like.liked {
+            background-color: #065FD4;
+        }
+
+        .btn-get {
+            background-color: #555555;
+            color: white;
+            pointer-events: none;
+            opacity: 0.7;
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+
+        .btn-get.active {
+            background-color: #2ecc71;
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .btn-get.active:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+        }
+
+        .icon {
+            margin-right: 12px;
+            font-size: 1.5rem;
+        }
+
+        .youtube-icon {
+            color: white;
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+
+        .like-icon {
+            color: white;
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+
+        .status-text {
+            margin-top: 10px;
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="get-script-section">
+            <h1>GET SCRIPT</h1>
+            
+            <div class="button-group">
+                <button id="subscribeBtn" class="btn btn-subscribe">
+                    <i class="fab fa-youtube youtube-icon"></i>
+                    <span>Subscribe</span>
+                </button>
+                
+                <button id="likeBtn" class="btn btn-like">
+                    <i class="fas fa-thumbs-up like-icon"></i>
+                    <span>Like</span>
+                </button>
+                
+                <div id="statusText" class="status-text">Subscribe dan Like untuk membuka tombol GET</div>
+                
+                <button id="getBtn" class="btn btn-get">
+                    <span class="icon">↓</span>
+                    <span>GET</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const likeBtn = document.getElementById('likeBtn');
+        const getBtn = document.getElementById('getBtn');
+        const statusText = document.getElementById('statusText');
+
+        let isSubscribed = false;
+        let isLiked = false;
+
+        subscribeBtn.addEventListener('click', function() {
+            isSubscribed = !isSubscribed;
+            if (isSubscribed) {
+                this.classList.add('subscribed');
+                this.innerHTML = '<i class="fab fa-youtube youtube-icon"></i><span>Subscribed</span>';
+            } else {
+                this.classList.remove('subscribed');
+                this.innerHTML = '<i class="fab fa-youtube youtube-icon"></i><span>Subscribe</span>';
+            }
+            checkButtons();
+        });
+
+        likeBtn.addEventListener('click', function() {
+            isLiked = !isLiked;
+            if (isLiked) {
+                this.classList.add('liked');
+                this.innerHTML = '<i class="fas fa-thumbs-up like-icon"></i><span>Liked</span>';
+            } else {
+                this.classList.remove('liked');
+                this.innerHTML = '<i class="fas fa-thumbs-up like-icon"></i><span>Like</span>';
+            }
+            checkButtons();
+        });
+
+        getBtn.addEventListener('click', function() {
+            alert('Script berhasil didownload!');
+        });
+
+        function checkButtons() {
+            if (isSubscribed && isLiked) {
+                getBtn.classList.add('active');
+                statusText.textContent = 'Tombol GET sudah bisa digunakan!';
+                statusText.style.color = '#2ecc71';
+            } else {
+                getBtn.classList.remove('active');
+                statusText.textContent = 'Subscribe dan Like untuk membuka tombol GET';
+                statusText.style.color = '#aaaaaa';
+            }
+        }
+    </script>
+</body>
+</html>
